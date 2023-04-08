@@ -1,0 +1,6 @@
+compiler:
+  solc:
+    remappings:
+      - "@chainlink=smartcontractkit/chainlink-brownie-contracts@1.2.0"
+    dependencies:
+      - smartcontractkit/chainlink-brownie-contracts@1.2.0
