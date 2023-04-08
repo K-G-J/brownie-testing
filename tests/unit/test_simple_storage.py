@@ -12,12 +12,12 @@ def simple_storage():
     return simple_storage
 
 
-def test_set_to_zero_reverts(simple_storage):
+def test_setNumber_to_zero_reverts(simple_storage):
     with brownie.reverts("invalid number"):
         simple_storage.setNumber(0)
 
 
-def test_can_set_number(simple_storage):
+def test_setNumber(simple_storage):
     # Arrange
     account = accounts[0]
     expected = 777
@@ -28,3 +28,11 @@ def test_can_set_number(simple_storage):
 
     # Assert
     assert simple_storage.number() == expected
+
+
+def test_setNumber_emits_event(simple_storage):
+    tx = simple_storage.setNumber(777)
+    # Check log contents
+    assert len(tx.events) == 1
+    assert tx.events[0]['oldNum'] == 0
+    assert tx.events[0]['newNum'] == 777
